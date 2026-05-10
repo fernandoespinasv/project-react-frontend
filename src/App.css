@@ -1,0 +1,42 @@
+/* Lista de criptos */
+.coin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+}
+
+/* Tarjetas de criptos */
+.coin-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.coin-rank {
+  color: #999;
+  font-weight: bold;
+  min-width: 30px;
+}
+
+.coin-info h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.coin-info h3 small {
+  color: #888;
+  font-weight: normal;
+}
+
+.coin-info p {
+  margin: 2px 0;
+}
+
+.coin-price {
+  font-weight: bold;
+}

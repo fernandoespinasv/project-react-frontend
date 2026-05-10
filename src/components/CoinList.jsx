@@ -1,15 +1,14 @@
-// Creamos componentes pequeños para evitar hinchar nuestra App.jsx+
-// Este componente recibe la lista de criptos y las pinta como una lista
+import CoinCard from './CoinCard'
+
+// Componente que recibe la lista de criptos y pinta una tarjeta por cada una
 
 function CoinList(props) {
   return (
-    <ul>
+    <div className="coin-list">
       {props.coins.map(coin => (
-        <li key={coin.id}>
-          {coin.name} ({coin.symbol.toUpperCase()}) - {coin.current_price} €
-        </li>
+        <CoinCard key={coin.id} coin={coin} />
       ))}
-    </ul>
+    </div>
   )
 }
 
