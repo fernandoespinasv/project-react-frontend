@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import CoinList from '../components/CoinList'
+import SearchBar from '../components/SearchBar'
 
-// Pagina principal: muestra la lista de criptos
+// Pagina principal: barra de busqueda + lista de criptos
 
 function Home() {
   const [coins, setCoins] = useState([])
@@ -20,7 +21,7 @@ function Home() {
         })
         setCoins(res.data)
       } catch (err) {
-        setError('No se han podido cargar las criptomonedas. Inténtalo más tarde.')
+        setError('No se han podido cargar las criptos. Intentalo mas tarde.')
         console.log(err)
       } finally {
         setLoading(false)
@@ -31,11 +32,12 @@ function Home() {
 
   return (
     <main className="main">
+      <SearchBar />
       {loading && <p className="loading">Cargando...</p>}
       {error && <p className="error">{error}</p>}
       {!loading && !error && (
         <>
-          <p className="legend">Las mini-gráficas muestran la variacion del precio en los últimos 7 dias</p>
+          <p className="legend">Las mini-graficas muestran la evolucion del precio en los ultimos 7 dias.</p>
           <CoinList coins={coins} />
         </>
       )}

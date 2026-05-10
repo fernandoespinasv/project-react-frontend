@@ -178,3 +178,38 @@
   text-align: center;
   font-style: italic;
 }
+
+/* Barra de búsqueda */
+.search-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: #1e293b;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  background-color: #1e293b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.search-bar button:hover {
+  background-color: #334155;
+}
