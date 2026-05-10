@@ -17,6 +17,12 @@
   color: #cbd5e1;
 }
 
+.header-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
 /* Zona principal */
 .main {
   max-width: 700px;

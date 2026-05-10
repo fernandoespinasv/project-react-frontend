@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import Header from './components/Header'
 import Home from './pages/Home'
 import CoinDetail from './pages/CoinDetail'
 import './App.css'
@@ -6,12 +7,8 @@ import './App.css'
 function App() {
   return (
     <div className="app">
-      <header className="header">
-        <h1>Cripto Tracker</h1>
-        <p>Top 20 criptomonedas por capitalización de mercado</p>
-      </header>
+      <Header />
 
-      {/* Aquí defino las rutas de la app */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/coin/:id" element={<CoinDetail />} />
