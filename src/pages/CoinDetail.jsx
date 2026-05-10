@@ -1,38 +1,35 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 
-// Página de detalle: coge el id de la URL y pide a la API la info completa de esa cripto
+// Página de detalle de una cripto.
 
 function CoinDetail() {
-  // Sacamos el id de la URL. Como en App.jsx la ruta es "/coin/:id", aquí id será "bitcoin", "ethereum", etc.
   const { id } = useParams()
-
   const [coin, setCoin] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-useEffect(() => {
-  async function getCoin() {
-    try {
-      const url = `https://api.coingecko.com/api/v3/coins/${id}`
-      const res = await axios.get(url, {
-        headers: {
-          'x-cg-demo-api-key': import.meta.env.VITE_COINGECKO_API_KEY
-        }
-      })
-      setCoin(res.data)
-    } catch (err) {
-      setError('No se ha podido cargar la informacion de la cripto.')
-      console.log(err)
-    } finally {
-      setLoading(false)
+  useEffect(() => {
+    async function getCoin() {
+      try {
+        const url = `https://api.coingecko.com/api/v3/coins/${id}`
+        const res = await axios.get(url, {
+          headers: {
+            'x-cg-demo-api-key': import.meta.env.VITE_COINGECKO_API_KEY
+          }
+        })
+        setCoin(res.data)
+      } catch (err) {
+        setError('No se ha podido cargar la información de la criptomoneda.')
+        console.log(err)
+      } finally {
+        setLoading(false)
+      }
     }
-  }
-  getCoin()
-}, [id]) // si cambia el id (por ej. el usuario va de bitcoin a ethereum), se vuelve a llamar
+    getCoin()
+  }, [id])
 
-  // Mientras carga o si ha fallado, salimos antes con un return rápido
   if (loading) {
     return <main className="main"><p className="loading">Cargando...</p></main>
   }
@@ -43,7 +40,7 @@ useEffect(() => {
     return null
   }
 
-  // Sacamos un par de campos del objeto para que el JSX quede más legible
+  // Datos del market_data
   const precio = coin.market_data.current_price.eur
   const cambio = coin.market_data.price_change_percentage_24h || 0
   const colorCambio = cambio >= 0 ? 'green' : 'red'
@@ -52,8 +49,20 @@ useEffect(() => {
   const maximo24h = coin.market_data.high_24h.eur
   const minimo24h = coin.market_data.low_24h.eur
 
+  // La descripción viene con etiquetas HTML dentro (<a>, <strong>...). Las quito con un regex sencillo
+  const descripcionLimpia = coin.description.en.replace(/<[^>]*>/g, '')
+  // Si es muy larga la corto, si no enorme
+  const descripcion = descripcionLimpia.length > 500
+    ? descripcionLimpia.substring(0, 500) + '...'
+    : descripcionLimpia
+
+  // Web oficial (a veces el array viene vacío o con strings vacíos)
+  const webOficial = coin.links.homepage[0]
+
   return (
     <main className="main">
+      <Link to="/" className="back-link">← Volver a la lista</Link>
+
       <div className="coin-detail-header">
         <img src={coin.image.large} alt={coin.name} width="80" height="80" />
         <div>
@@ -69,7 +78,22 @@ useEffect(() => {
         <p><strong>Minimo 24h:</strong> {minimo24h.toLocaleString('es-ES')} €</p>
         <p><strong>Capitalizacion de mercado:</strong> {marketCap.toLocaleString('es-ES')} €</p>
         <p><strong>Volumen 24h:</strong> {volumen.toLocaleString('es-ES')} €</p>
+        {coin.genesis_date && <p><strong>Fecha de creacion:</strong> {coin.genesis_date}</p>}
       </div>
+
+      {descripcion && (
+        <div className="coin-detail-description">
+          <h3>Descripcion</h3>
+          <p>{descripcion}</p>
+        </div>
+      )}
+
+      {webOficial && (
+        <div className="coin-detail-links">
+          <h3>Enlaces</h3>
+          <a href={webOficial} target="_blank" rel="noopener noreferrer">Web oficial</a>
+        </div>
+      )}
     </main>
   )
 }
