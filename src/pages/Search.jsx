@@ -38,7 +38,7 @@ function Search() {
   return (
     <main className="main">
       <Link to="/" className="back-link">← Volver a la lista</Link>
-      <h2>Resultados para: "{query}"</h2>
+      <h2 className="search-page-title">Resultados para: "{query}"</h2>
 
       {loading && <p className="loading">Buscando...</p>}
       {error && <p className="error">{error}</p>}

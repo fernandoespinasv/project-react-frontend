@@ -246,3 +246,28 @@
   color: #999;
   font-size: 14px;
 }
+
+/* Titulo de la página de resultados */
+.search-page-title {
+  margin: 0 0 15px 0;
+  font-size: 22px;
+  color: #333;
+}
+
+/* Ajustes para pantallas pequeñas (móvil) */
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .header-stats {
+    font-size: 12px;
+    gap: 15px;
+  }
+
+  .coin-detail-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+}
