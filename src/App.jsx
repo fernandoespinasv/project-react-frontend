@@ -1,29 +1,9 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import CoinList from './components/CoinList'
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import CoinDetail from './pages/CoinDetail'
 import './App.css'
 
 function App() {
-  const [coins, setCoins] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    async function getCoins() {
-      try {
-        const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1'
-        const res = await axios.get(url)
-        setCoins(res.data)
-      } catch (err) {
-        setError('No se han podido cargar las criptomonedas. Inténtalo más tarde.')
-        console.log(err)
-      } finally {
-        setLoading(false)
-      }
-    }
-    getCoins()
-  }, [])
-
   return (
     <div className="app">
       <header className="header">
@@ -31,11 +11,11 @@ function App() {
         <p>Top 20 criptomonedas por capitalización de mercado</p>
       </header>
 
-      <main className="main">
-        {loading && <p className="loading">Cargando...</p>}
-        {error && <p className="error">{error}</p>}
-        {!loading && !error && <CoinList coins={coins} />}
-      </main>
+      {/* Aquí defino las rutas de la app */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/coin/:id" element={<CoinDetail />} />
+      </Routes>
     </div>
   )
 }
