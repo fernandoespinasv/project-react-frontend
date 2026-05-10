@@ -9,31 +9,36 @@ function Home() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-useEffect(() => {
-  async function getCoins() {
-    try {
-      const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1'
-      const res = await axios.get(url, {
-        headers: {
-          'x-cg-demo-api-key': import.meta.env.VITE_COINGECKO_API_KEY
-        }
-      })
-      setCoins(res.data)
-    } catch (err) {
-      setError('No se han podido cargar las criptomonedas. Inténtalo más tarde.')
-      console.log(err)
-    } finally {
-      setLoading(false)
+  useEffect(() => {
+    async function getCoins() {
+      try {
+        const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1&sparkline=true'
+        const res = await axios.get(url, {
+          headers: {
+            'x-cg-demo-api-key': import.meta.env.VITE_COINGECKO_API_KEY
+          }
+        })
+        setCoins(res.data)
+      } catch (err) {
+        setError('No se han podido cargar las criptomonedas. Inténtalo más tarde.')
+        console.log(err)
+      } finally {
+        setLoading(false)
+      }
     }
-  }
-  getCoins()
-}, [])
+    getCoins()
+  }, [])
 
   return (
     <main className="main">
       {loading && <p className="loading">Cargando...</p>}
       {error && <p className="error">{error}</p>}
-      {!loading && !error && <CoinList coins={coins} />}
+      {!loading && !error && (
+        <>
+          <p className="legend">Las mini-gráficas muestran la variacion del precio en los últimos 7 dias</p>
+          <CoinList coins={coins} />
+        </>
+      )}
     </main>
   )
 }

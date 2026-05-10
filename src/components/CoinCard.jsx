@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import Sparkline from './Sparkline'
 
 // Tarjeta para mostrar la info de una cripto. Ahora es clicable y lleva a CoinDetail
 
@@ -6,6 +7,9 @@ function CoinCard(props) {
   const coin = props.coin
   const cambio = coin.price_change_percentage_24h || 0
   const colorCambio = cambio >= 0 ? 'green' : 'red'
+
+  // Array de precios de los ultimos 7 dias para la mini grafica
+  const sparkData = coin.sparkline_in_7d ? coin.sparkline_in_7d.price : []
 
   return (
     <Link to={`/coin/${coin.id}`} className="coin-card">
@@ -17,6 +21,7 @@ function CoinCard(props) {
         <p style={{ color: colorCambio }}>
           {cambio.toFixed(2)} %
         </p>
+        <Sparkline data={sparkData} color={colorCambio} />
       </div>
     </Link>
   )

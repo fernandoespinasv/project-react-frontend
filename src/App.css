@@ -23,9 +23,23 @@
   display: inline-block;
 }
 
+.header-stats {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+.header-stats strong {
+  color: white;
+}
+
 /* Zona principal */
 .main {
-  max-width: 700px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -48,9 +62,9 @@
 
 /* Lista */
 .coin-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
 }
 
 /* Tarjeta de cripto */
@@ -155,4 +169,12 @@
 
 .coin-detail-links a:hover {
   text-decoration: underline;
+}
+
+.legend {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 15px;
+  text-align: center;
+  font-style: italic;
 }
