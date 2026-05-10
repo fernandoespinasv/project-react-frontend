@@ -14,7 +14,7 @@ function CoinCard(props) {
       <img src={coin.image} alt={coin.name} width="40" height="40" />
       <div className="coin-info">
         <h3>{coin.name} <small>({coin.symbol.toUpperCase()})</small></h3>
-        <p className="coin-price">{coin.current_price} €</p>
+        <p className="coin-price">{coin.current_price.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €</p>
         <p style={{ color: colorCambio }}>
           {cambio.toFixed(2)} %
         </p>

@@ -5,7 +5,7 @@ import './App.css'
 
 function App() {
   const [coins, setCoins] = useState([])
-  const [loading, setLoading] = useState(true) // Empiezo en true porque al principio se está cargando
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
@@ -15,11 +15,9 @@ function App() {
         const res = await axios.get(url)
         setCoins(res.data)
       } catch (err) {
-        // Si la API falla, guardo un mensaje para enseñar en pantalla
         setError('No se han podido cargar las criptomonedas. Inténtalo más tarde.')
         console.log(err)
       } finally {
-        // Esto se ejecuta haya ido bien o mal, así me aseguro de quitar el "Cargando..."
         setLoading(false)
       }
     }
@@ -27,13 +25,17 @@ function App() {
   }, [])
 
   return (
-    <div>
-      <h1>Cripto Tracker</h1>
-      <p>Lista de criptomonedas con datos de CoinGecko</p>
+    <div className="app">
+      <header className="header">
+        <h1>Cripto Tracker</h1>
+        <p>Top 20 criptomonedas por capitalización de mercado</p>
+      </header>
 
-      {loading && <p>Cargando...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {!loading && !error && <CoinList coins={coins} />}
+      <main className="main">
+        {loading && <p className="loading">Cargando...</p>}
+        {error && <p className="error">{error}</p>}
+        {!loading && !error && <CoinList coins={coins} />}
+      </main>
     </div>
   )
 }

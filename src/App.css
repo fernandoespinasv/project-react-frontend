@@ -1,26 +1,80 @@
-/* Lista de criptos */
+/* Cabecera */
+.header {
+  background-color: #1e293b;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 32px;
+  color: white;
+}
+
+.header p {
+  margin: 5px 0 0 0;
+  color: #cbd5e1;
+}
+
+/* Zona principal */
+.main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Mensajes */
+.loading {
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+  padding: 30px;
+}
+
+.error {
+  text-align: center;
+  color: #c00;
+  background-color: #fee;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* Lista */
 .coin-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-width: 600px;
 }
 
-/* Tarjetas de criptos */
+/* Tarjeta de cripto */
 .coin-card {
   display: flex;
   align-items: center;
   gap: 15px;
-  padding: 10px;
+  padding: 15px;
   background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+/* Efecto al pasar el raton por encima */
+.coin-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .coin-rank {
   color: #999;
   font-weight: bold;
-  min-width: 30px;
+  min-width: 35px;
+  font-size: 14px;
+}
+
+.coin-info {
+  flex: 1;
 }
 
 .coin-info h3 {
@@ -34,7 +88,8 @@
 }
 
 .coin-info p {
-  margin: 2px 0;
+  margin: 3px 0 0 0;
+  font-size: 14px;
 }
 
 .coin-price {
