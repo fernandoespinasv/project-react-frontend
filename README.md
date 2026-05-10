@@ -1,16 +1,27 @@
-# React + Vite
+# Cripto Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este repositorio se ha creado con motivo del proyecto final de la Microcredencial de Desarrollo Frontend del UPC School (año 2026). Aquí se incluye todo el proceso de creación de una web usando React. Nuestra web muestra datos en tiempo real de criptomonedas usando la API de CoinGecko (https://www.coingecko.com).
 
-Currently, two official plugins are available:
+## Web publicada
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+https://cripto-tracker-fernando.netlify.app
 
-## React Compiler
+## Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Top 20 de criptomonedas según la capitalización de mercado (página principal).
+- Página propia de detalle para cada moneda, incluye: precio, cambio 24h, 
+  capitalización, volumen, descripción y enlace a la web oficial.
+- Mini-graficas con la evolución del precio de los últimos 7 dias.
+- Datos globales del mercado en la cabecera (capitalización total y 
+  dominancia del Bitcoin).
+- Barra de búsqueda general.
+- Diseño responsive para móviles.
 
-## Expanding the ESLint configuration
+## Tecnologias usadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React (con Vite).
+- React Router (modo declarativo).
+- Axios para las llamadas a la API.
+- CSS sin librerías externas.
+- Publicación en Netlify con deploy automático desde GitHub.
+
